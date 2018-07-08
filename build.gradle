@@ -1,0 +1,38 @@
+ 
+buildscript {
+	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/";
+		}
+	}
+}
+
+apply plugin: 'java';
+apply plugin: 'eclipse';
+
+archivesBaseName = 'bluez-dbus';
+version = '0.1.0-CUSTOM';
+
+repositories {
+	jcenter();
+	mavenCentral();
+	maven {
+		url "https://repo.eclipse.org/content/groups/releases/";
+	}
+	ivy {
+		//Resolves dependencies I've manually stuffed into my webserver
+		name "endless.blue dependency mirror";
+		artifactPattern "https://endless.blue/files/ivy/[module]-[revision].[ext]";
+	}
+}
+
+dependencies {
+	compile group: 'com.google.guava', name: 'guava', version: '19.0'
+	compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
+	
+	compile group: 'com.github.hypfvieh', name: 'dbus-java', version: '3.0.0-SNAPSHOT'
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+	compile group: 'com.github.hypfvieh', name: 'java-utils', version: '1.0.4-SNAPSHOT'
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+	testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+}
