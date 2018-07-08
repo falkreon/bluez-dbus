@@ -202,9 +202,10 @@ public class BluetoothDevice extends AbstractBluetoothObject {
      * @return string array of UUIDs, maybe null
      */
     public String[] getUuids() {
-        Vector<?> typed = getTyped("UUIDs", Vector.class);
+        @SuppressWarnings("unchecked")
+		ArrayList<String> typed = getTyped("UUIDs", ArrayList.class);
         if (typed != null) {
-            return typed.toArray(new String[]{});
+            return typed.toArray(new String[typed.size()]);
         }
         return null;
     }
